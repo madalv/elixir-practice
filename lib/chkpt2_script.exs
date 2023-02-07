@@ -35,3 +35,13 @@ IO.inspect(caesar_decode("zab", 1))
 
 IO.inspect(rm_consecutive_duplicates([1, 2, 3, 3, 4, 4, 5]))
 
+IO.inspect(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+IO.inspect(longest_common_prefix(["flower", "flow", "flight"]))
+IO.inspect(longest_common_prefix(["flower", "alpha", "bat"]))
+
+IO.inspect(to_roman(13))
+
+IO.inspect(factorize(21))
+IO.inspect(factorize(36), charlists: :as_list)
+IO.inspect(factorize(13), charlists: :as_list)

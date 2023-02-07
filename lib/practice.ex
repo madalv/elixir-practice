@@ -66,8 +66,8 @@ defmodule Practice do
   end
 
   def pythagorean_triple(n) do
-    for a <- 1..(n - 2),
-        b <- (a + 1)..(n - 1),
+    for a <- 1..n,
+        b <- (a + 1)..n,
         c <- (b + 1)..n,
         a * a + b * b == c * c,
         do: {a, b, c}
@@ -86,9 +86,7 @@ defmodule Practice do
         |> String.split("", trim: true)
         |> Enum.uniq()
 
-      letters -- row1 == [] ||
-        letters -- row2 == [] ||
-        letters -- row3 == []
+      letters -- row1 == [] || letters -- row2 == [] || letters -- row3 == []
     end)
   end
 
@@ -113,6 +111,87 @@ defmodule Practice do
 
       head != Enum.at(tail, 0) ->
         [head | rm_consecutive_duplicates(tail)]
+    end
+  end
+
+  def group_anagrams(list) do
+    map =
+      Enum.reduce(list, %{}, fn word, acc ->
+        sorted_word = word |> String.split("", trim: true) |> Enum.sort() |> Enum.join("")
+        existing_words = Map.get(acc, sorted_word, "")
+
+        cond do
+          existing_words == "" ->
+            Map.put(acc, sorted_word, [word])
+
+          existing_words != "" ->
+            Map.put(acc, sorted_word, [word | existing_words])
+        end
+      end)
+
+    map
+  end
+
+  def longest_common_prefix(strings) do
+    strings
+    |> Enum.map(fn string -> Kernel.to_charlist(string) end)
+    |> Enum.zip()
+    |> Enum.map(fn tuple -> Tuple.to_list(tuple) end)
+    |> Enum.map(fn part -> Enum.uniq(part) end)
+    |> Enum.take_while(fn part -> length(part) == 1 end)
+    |> Enum.join("")
+  end
+
+  def to_roman(nr) do
+    romans = [
+      {1000, "M"},
+      {900, "CM"},
+      {500, "D"},
+      {400, "CD"},
+      {100, "C"},
+      {90, "XC"},
+      {50, "L"},
+      {40, "XL"},
+      {10, "X"},
+      {9, "IX"},
+      {5, "V"},
+      {4, "IV"},
+      {1, "I"}
+    ]
+
+    get_roman_numeral(nr, romans)
+  end
+
+  defp get_roman_numeral(0, _), do: ""
+
+  defp get_roman_numeral(nr, [{key, val} | tail]) do
+    count = div(nr, key)
+    String.duplicate(val, count) <> get_roman_numeral(nr - key * count, tail)
+  end
+
+  def factorize(n) do
+    if is_prime?(n) do
+      [n]
+    else
+      Enum.reduce(2..div(n, 2), [], fn i, acc ->
+        cond do
+          rem(n, i) == 0 && is_prime?(i) ->
+            acc ++ find_primes(n, i)
+
+          true ->
+            acc
+        end
+      end)
+    end
+  end
+
+  defp find_primes(n, i) do
+    cond do
+      rem(n, i) == 0 && is_prime?(i) ->
+        [i | find_primes(div(n, i), i)]
+
+      rem(n, i) != 0 ->
+        []
     end
   end
 end
