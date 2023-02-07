@@ -14,7 +14,7 @@ This will execute script `chkpt2_script.exs`, which contains tasks for Week 2.
 To start Elixir's interactive shell loaded with the project execute:
 
 ```bash
-mix -S iex
+iex -S mix
 ```
 
 ## Testing
@@ -23,6 +23,14 @@ To test, execute:
 
 ```bash
 mix test
+```
+
+## Formatting
+
+To format, execute:
+
+```bash
+mix format
 ```
 
 ## Installation

@@ -25,3 +25,13 @@ IO.puts(smallest_possible_nr(1, 0, 4))
 IO.inspect(rotate_left([1, 2, 3, 5], 2))
 
 IO.inspect(pythagorean_triple(20))
+
+# checkpoin4 2 main tasks
+
+IO.inspect(line_words(["Hello", "Alaska", "Dad", "Peace"]))
+
+IO.inspect(caesar_encode("abc", 1))
+IO.inspect(caesar_decode("zab", 1))
+
+IO.inspect(rm_consecutive_duplicates([1, 2, 3, 3, 4, 4, 5]))
+

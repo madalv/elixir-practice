@@ -72,4 +72,47 @@ defmodule Practice do
         a * a + b * b == c * c,
         do: {a, b, c}
   end
+
+  def line_words(list) do
+    row1 = ["q", "w", "e", "r", "y", "u", "i", "o", "p"]
+    row2 = ["a", "s", "d", "f", "g", "h", "j", "k", "k", "l"]
+    row3 = ["z", "x", "c", "v", "b", "n", "m"]
+
+    list
+    |> Enum.filter(fn word ->
+      letters =
+        word
+        |> String.downcase()
+        |> String.split("", trim: true)
+        |> Enum.uniq()
+
+      letters -- row1 == [] ||
+        letters -- row2 == [] ||
+        letters -- row3 == []
+    end)
+  end
+
+  def caesar_encode(string, key) do
+    s =
+      for c <- Kernel.to_charlist(string),
+          do: (c < 97 && c) || 97 + rem(c - 71 - key, 26)
+
+    to_string(s)
+  end
+
+  def caesar_decode(string, key), do: caesar_encode(string, -key)
+
+  def rm_consecutive_duplicates([]), do: []
+
+  def rm_consecutive_duplicates(list) do
+    [head | tail] = list
+
+    cond do
+      head == Enum.at(tail, 0) ->
+        rm_consecutive_duplicates(tail)
+
+      head != Enum.at(tail, 0) ->
+        [head | rm_consecutive_duplicates(tail)]
+    end
+  end
 end
