@@ -53,10 +53,27 @@ defmodule Practice do
   end
 
   def smallest_possible_nr(a, b, c) do
-    [a, b, c]
+    list = [a, b, c]
+
+    zero_count =
+      Enum.reduce(list, 0, fn dig, acc ->
+        if dig == 0 do
+          acc + 1
+        else
+          acc
+        end
+      end)
+
+    list
+    |> Enum.filter(fn dig -> dig != 0 end)
     |> Enum.sort()
+    |> add_zeroes(zero_count)
     |> Enum.join()
   end
+
+  defp add_zeroes(list, count), do: List.insert_at(list, 1, replicate("0", count))
+
+  defp replicate(n, count), do: for _ <- 1..count, do: n
 
   def rotate_left(list, 0), do: list
 
@@ -176,7 +193,7 @@ defmodule Practice do
       Enum.reduce(2..div(n, 2), [], fn i, acc ->
         cond do
           rem(n, i) == 0 && is_prime?(i) ->
-            acc ++ find_primes(n, i)
+            acc ++ find_factors(n, i)
 
           true ->
             acc
@@ -185,13 +202,41 @@ defmodule Practice do
     end
   end
 
-  defp find_primes(n, i) do
+  defp find_factors(n, i) do
     cond do
       rem(n, i) == 0 && is_prime?(i) ->
-        [i | find_primes(div(n, i), i)]
+        [i | find_factors(div(n, i), i)]
 
-      rem(n, i) != 0 ->
+      true ->
         []
     end
+  end
+
+  def letters_combos(string) do
+    map = %{
+      "2" => ["a", "b", "c"],
+      "3" => ["d", "e", "f"],
+      "4" => ["g", "h", "i"],
+      "5" => ["j", "k", "l"],
+      "6" => ["m", "n", "o"],
+      "7" => ["p", "q", "r", "s"],
+      "8" => ["t", "u", "v"],
+      "9" => ["w", "x", "y", "z"]
+    }
+
+    lists =
+      string
+      |> String.split("", trim: true)
+      |> Enum.map(fn digit -> Map.get(map, digit, "") end)
+
+    combine(Enum.at(lists, 0), List.delete_at(lists, 0))
+  end
+
+  defp combine(list, []), do: list
+
+  defp combine(list, [head | tail]) do
+    combinations = for part1 <- list, part2 <- head, do: part1 <> part2
+
+    combine(combinations, tail)
   end
 end

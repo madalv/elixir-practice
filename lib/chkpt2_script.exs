@@ -1,6 +1,7 @@
 import Practice
 
 # checkpoint 2 min tasks
+IO.puts("----- MIN -----")
 
 IO.puts(is_prime?(13))
 IO.puts(is_prime?(220))
@@ -27,15 +28,21 @@ IO.inspect(rotate_left([1, 2, 3, 5], 2))
 IO.inspect(pythagorean_triple(20))
 
 # checkpoin4 2 main tasks
+IO.puts("----- MAIN -----")
 
 IO.inspect(line_words(["Hello", "Alaska", "Dad", "Peace"]))
 
 IO.inspect(caesar_encode("abc", 1))
 IO.inspect(caesar_decode("zab", 1))
 
+IO.inspect(letters_combos("292"))
+
 IO.inspect(rm_consecutive_duplicates([1, 2, 3, 3, 4, 4, 5]))
 
 IO.inspect(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+# checkpoint 2 bonus tasks
+IO.puts("----- BONUS -----")
 
 IO.inspect(longest_common_prefix(["flower", "flow", "flight"]))
 IO.inspect(longest_common_prefix(["flower", "alpha", "bat"]))
