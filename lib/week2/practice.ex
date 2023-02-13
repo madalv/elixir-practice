@@ -73,7 +73,7 @@ defmodule Practice do
 
   defp add_zeroes(list, count), do: List.insert_at(list, 1, replicate("0", count))
 
-  defp replicate(n, count), do: for _ <- 1..count, do: n
+  defp replicate(n, count), do: for(_ <- 1..count, do: n)
 
   def rotate_left(list, 0), do: list
 

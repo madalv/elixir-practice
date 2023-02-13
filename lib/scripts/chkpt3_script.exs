@@ -1,16 +1,20 @@
-import Concurrency
-
 # chkpt 3 min tasks
+printer = Printer.start()
+modifier = Modifier.start()
 
-pid1 = spawn(&printing_actor/0)
-pid2 = spawn(&modifying_actor/0)
+Monitor.start_link([])
+Monitor.monitor(modifier)
 
-send(pid1, {:any, "Meow"})
+send(printer, {:any, "Meow"})
+send(modifier, {printer, :integer, 12})
+send(modifier, {printer, :string, "Ayo"})
+send(modifier, "a")
 
-#:timer.sleep(2000)
+averager = Averager.start()
 
-send(pid1, {:any, "How's the weather up there?"})
-
-send(pid2, {:string, "Huh?"})
-send(pid2, {:integer, 12})
-send(pid2, {:unkown, [1, 3]})
+# can't send them at the same time cause others will get ignored?
+send(averager, 25.0)
+:timer.sleep(1)
+send(averager, 2.0)
+send(averager, 5)
+send(averager, 10)
