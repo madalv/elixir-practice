@@ -2,8 +2,8 @@
 printer = Printer.start()
 modifier = Modifier.start()
 
-Monitor.start_link([])
-Monitor.monitor(modifier)
+{:ok, modifier_monitor} = Monitor.start_link([])
+Monitor.monitor(modifier_monitor, modifier)
 
 send(printer, {:any, "Meow"})
 send(modifier, {printer, :integer, 12})
@@ -18,3 +18,11 @@ send(averager, 25.0)
 send(averager, 2.0)
 send(averager, 5)
 send(averager, 10)
+
+# chkpt 3 main tasks
+
+{:ok, queue} = Queue.start_link([])
+Queue.push(queue, 1)
+Queue.push(queue, 2)
+IO.inspect(Queue.list(queue))
+IO.inspect(Queue.pop(queue))

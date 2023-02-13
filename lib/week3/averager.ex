@@ -13,9 +13,9 @@ defmodule Averager do
         new_avg = new_sum / new_count
         IO.puts("Curavg: #{new_avg} #{new_sum} #{new_count}")
         loop(new_sum, cnt + 1)
-      _ -> exit(:illegal_arg)
+
+      _ ->
+        exit(:illegal_arg)
     end
-
   end
-
 end

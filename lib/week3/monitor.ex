@@ -10,8 +10,8 @@ defmodule Monitor do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  def monitor(pid) do
-    GenServer.cast(__MODULE__, {:monitor, pid})
+  def monitor(mon_pid, pid) do
+    GenServer.cast(mon_pid, {:monitor, pid})
   end
 
   def handle_cast({:monitor, pid}, state) do
