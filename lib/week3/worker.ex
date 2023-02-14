@@ -6,7 +6,7 @@ defmodule Worker do
   def loop() do
     receive do
       {:task, task} ->
-        if :rand.uniform() < 0.5 do
+        if :rand.uniform(2) == 1 do
           exit(:normal)
         else
           exit(String.to_atom(task))

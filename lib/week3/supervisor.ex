@@ -20,21 +20,20 @@ defmodule Sup do
   def loop(list) do
     receive do
       {:task, task} ->
-        worker = create_worker()
-        schedule_worker(task, worker)
+        schedule_worker(task, create_worker())
         loop(list)
 
       {:DOWN, _, :process, _, reason} ->
         case reason do
-          :normal -> IO.puts("Task successful: Miau")
+          :normal ->
+            IO.puts("Task successful: Miau")
+
           _ ->
             task = Atom.to_string(reason)
             IO.puts("Task failed: #{task}")
-            worker = create_worker()
-            schedule_worker(task, worker)
+            schedule_worker(task, create_worker())
             loop(list)
         end
-
-      end
+    end
   end
 end
