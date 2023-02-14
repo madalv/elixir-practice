@@ -7,7 +7,7 @@ defmodule Monitor do
   end
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+    GenServer.start_link(__MODULE__, [])
   end
 
   def monitor(mon_pid, pid) do
@@ -19,9 +19,8 @@ defmodule Monitor do
     {:noreply, state}
   end
 
-  # WHY CAN'T I FUCKING PRINT FROM_PROCES??????
-  def handle_info({:DOWN, _, :process, from_process, reason}, state) do
-    Logger.info("Monitored process down. Reason: #{Atom.to_string(reason)}}")
+  def handle_info({:DOWN, _, :process, _, reason}, state) do
+    Logger.info("Monitored process down. Reason: #{Atom.to_string(reason)}")
     {:noreply, state}
   end
 end

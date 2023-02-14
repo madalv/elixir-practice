@@ -3,8 +3,12 @@ defmodule Semaphore do
     spawn(Semaphore, :semaphore, [count])
   end
 
-  def request(semaphore) do
-    send(semaphore, {:request, self()})
+  def release(semaphore) do
+    send(semaphore, :release)
+  end
+
+  def acquire(semaphore) do
+    send(semaphore, {:acquire, self()})
 
     receive do
       :granted ->
@@ -21,7 +25,7 @@ defmodule Semaphore do
 
   def semaphore(n) do
     receive do
-      {:request, from} ->
+      {:acquire, from} ->
         send(from, :granted)
         semaphore(n - 1)
 

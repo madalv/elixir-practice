@@ -22,7 +22,14 @@ send(averager, 10)
 # chkpt 3 main tasks
 
 {:ok, queue} = Queue.start_link([])
+
 Queue.push(queue, 1)
 Queue.push(queue, 2)
+
 IO.inspect(Queue.list(queue))
 IO.inspect(Queue.pop(queue))
+
+# chkpt 3 bonus tasks
+sup = Sup.start()
+
+Sup.schedule(sup, "a")
