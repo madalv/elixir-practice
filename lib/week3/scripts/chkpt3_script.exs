@@ -30,8 +30,6 @@ IO.inspect(Queue.list(queue))
 IO.inspect(Queue.pop(queue))
 
 # chkpt 3 bonus tasks
-sup = Sup.start()
+scheduler = Scheduler.start()
 
-Sup.schedule(sup, "a")
-
-
+Scheduler.schedule(scheduler, "a")

@@ -2,16 +2,17 @@
  
 ## Running the Scripts
 
-Change into the root folder and execute:
+Each week has a folder named `scripts`. 
+To run the tasks for a particular week, change into the root folder and execute:
 
 ```bash
-mix run lib/chkpt2_script.exs
+mix run lib/week2/scripts/chkpt2_script.exs
 ```
 
 This will execute script `chkpt2_script.exs`, which contains tasks for Week 2. 
 
 
-To start Elixir's interactive shell loaded with the project execute:
+Alternatively, to start Elixir's interactive shell loaded with the project execute (from the root folder):
 
 ```bash
 iex -S mix
