@@ -15,7 +15,7 @@ defmodule Week4.Worker do
   end
 
   def die(pid) do
-    Process.exit(pid, :kill)
+    Process.exit(pid, :die)
   end
 
   def handle_call(string, _from, _state) do
