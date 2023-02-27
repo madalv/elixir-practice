@@ -38,5 +38,4 @@ defmodule MainSupervisor do
     |> Enum.find(fn {id, _, _, _} -> id == atom end)
     |> elem(1)
   end
-
 end

@@ -1,5 +1,4 @@
 defmodule ActorList do
-
   def traverse(list) do
     send(Enum.at(list, 0), :next)
   end
@@ -8,8 +7,8 @@ defmodule ActorList do
     Enum.map(list, fn actor ->
       send(actor, :reverse)
       actor
-  end)
+    end)
 
-  Enum.reverse(list)
+    Enum.reverse(list)
   end
 end

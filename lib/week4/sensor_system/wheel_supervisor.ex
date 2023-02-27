@@ -25,7 +25,7 @@ defmodule WheelSupervisor do
       %{
         id: :wheel4_sensor,
         start: {Sensor, :start_link, ["Wheel 4 Sensor"]}
-      },
+      }
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
@@ -36,5 +36,4 @@ defmodule WheelSupervisor do
     |> Enum.find(fn {id, _, _, _} -> id == atom end)
     |> elem(1)
   end
-
 end

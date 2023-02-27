@@ -16,6 +16,7 @@ defmodule Swapper do
 
   def handle_call(list, _from, _state) do
     Logger.debug("Swapper got: " <> inspect(list))
+
     if :rand.uniform(2) == 1 do
       exit(:random_failure)
     else

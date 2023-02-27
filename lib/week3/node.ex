@@ -29,10 +29,12 @@ defmodule MyNode do
 
       :reverse ->
         loop(next, val, prev)
+
       :show ->
         IO.inspect(prev)
         IO.inspect(next)
     end
+
     loop(prev, val, next)
   end
 end

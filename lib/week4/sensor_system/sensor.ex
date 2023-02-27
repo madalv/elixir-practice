@@ -17,9 +17,7 @@ defmodule Sensor do
     {:stop, reason, state}
   end
 
-
   def terminate(_reason, _state) do
     CrashCounter.new_crash()
   end
-
 end
