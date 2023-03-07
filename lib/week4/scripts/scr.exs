@@ -9,20 +9,20 @@ Week4.Worker.work(
   "hello world"
 )
 
-Week4.Worker.die(WorkerSupervisor.get_process(:worker1))
+# Week4.Worker.die(WorkerSupervisor.get_process(:worker1))
 
-###
+# ###
 
-# {:ok, s} = MainSupervisor.start_link()
-# Process.exit(MainSupervisor.get_process(:cabin_sensor), :a)
+# # {:ok, s} = MainSupervisor.start_link()
+# # Process.exit(MainSupervisor.get_process(:cabin_sensor), :a)
 
-###
+# ###
 
-# {:ok, s} = PulpFiction.Supervisor.start_link()
-# WhiteGuy.speak("W-What...?")
+# # {:ok, s} = PulpFiction.Supervisor.start_link()
+# # WhiteGuy.speak("W-What...?")
 
-Process.info(Process.whereis(CrashCounter))
+# Process.info(Process.whereis(CrashCounter))
 
 receive do
-  msg -> IO.inspect(msg)
+  msg -> IO.puts(msg)
 end

@@ -1,5 +1,4 @@
-n =
-  MyNode.start(nil, 1, nil)
+n = MyNode.start(nil, 1, nil)
 
 n1 = MyNode.start(nil, 2, nil)
 n2 = MyNode.start(nil, 3, nil)
