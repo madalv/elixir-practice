@@ -27,7 +27,7 @@ defmodule Practice do
 
   def extract_random(list, count)
       when is_list(list) and
-             is_integer(count) do
+            is_integer(count) do
     list |> Enum.shuffle() |> Enum.take(count)
   end
 
